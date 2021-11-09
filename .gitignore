@@ -1,9 +1,5 @@
 
 .vscode/
 __pycache__/
-node_modules/
 venv/
-
-
-# Serverless directories
-.serverless
+template.yml
