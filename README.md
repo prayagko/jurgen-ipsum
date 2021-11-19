@@ -1,9 +1,19 @@
 Lorem Ipsum made from Jurgen Klopp quotes
 
-Make get request to: https://t3ygzbl2q0.execute-api.ap-southeast-2.amazonaws.com/default/jurgen-ipsum
+**API**
 
-Parameters:
+Endpoint: https://t3ygzbl2q0.execute-api.ap-southeast-2.amazonaws.com/default/jurgen-ipsum
 
-  - type: "sentence" or "paragraph" (defaults to sentence if not provided)
-  - number: number of sentences or paragraphs (defaults to 6 if not provided)
+Method: Get
 
+Query Parameters:
+
+  **'type'**
+      value: "sentence" or "paragraph" 
+      default value: "sentence"
+      required: false
+  
+  **'number'**
+      value: digit > 0     e.g. 4
+      default value: "6"
+      required: false
