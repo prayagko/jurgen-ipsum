@@ -45,7 +45,6 @@ def jurgenIpsum(event, context):
         }    
     
     with open('processed_quotes.txt', 'r') as filehandle:
-    # read pickled processed quotesList data as binary data stream
         quotesList = json.load(filehandle)
 
     if textType.lower() == 'sentence':

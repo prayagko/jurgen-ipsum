@@ -24,7 +24,7 @@ def processQuotes(quotes):
 # store the quotesList as a pickled file
 def pickleQuotesList(quotesList):
     with open('processed_quotes.txt', 'w') as filehandle:
-        # store the data as binary data stream
+        # store the data as json
         json.dump(quotesList, filehandle)
     return
 
