@@ -1,5 +1,6 @@
-quotes = [
-              "I never succeeded in bringing to the field what was going on in my brain. I had the talent for the fifth division, and the mind for the Bundesliga. The result was a career in the second division.",
+# This Python file uses the following encoding: utf-8
+
+rawQuotes = ["I never succeeded in bringing to the field what was going on in my brain. I had the talent for the fifth division, and the mind for the Bundesliga. The result was a career in the second division.",
               "He likes having the ball, playing football, passes. It’s like an orchestra. But it’s a silent song. I like heavy metal.",
               "It doesn’t make it any easier to run your heart out when you’ve just woken up in a five-star hotel. Too much comfort makes you comfortable.",
               "Mkhitaryan fits us like an arse on a bucket. What he offers is exactly what we need.",

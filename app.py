@@ -1,7 +1,5 @@
-
 import json
 import random
-from quotes import quotes
 
 
 def jurgenIpsum(event, context):
@@ -9,39 +7,96 @@ def jurgenIpsum(event, context):
     if event.get('queryStringParameters'):
         number = event['queryStringParameters'].get('number', 6)
         textType = event['queryStringParameters'].get('type', 'sentence')
+        paraSize = event['queryStringParameters'].get('para-size', 7)
     else:
         number = 6
         textType = 'sentence'
-            
-            
+        paraSize = 7
+    
+
     try:
         number = int(number)
     except ValueError:
         return {
             "statusCode": 400,
-            "body": json.dumps(["Error: Invalid number value"])
+            "body": json.dumps(["Error: Invalid number value. Ensure that number value is a digit."])
         }
+        
+    if number < 0:
+        return {
+            "statusCode": 400,
+            "body": json.dumps(["Error: Number value should be digit greater than 0."])
+        }   
+        
+    if textType == 'paragraph':
+        try:
+            paraSize = int(paraSize)
+        except ValueError:
+            return {
+                "statusCode": 400,
+                "body": json.dumps(["Error: Invalid para-size value. Ensure that para-size value is a digit."])
+            }
+        
     
+    if textType=='paragraph' and paraSize < 0:
+        return {
+            "statusCode": 400,
+            "body": json.dumps(["Error: para-size value should be digit greater than 0."])
+        }    
+    
+    with open('processed_quotes.txt', 'r') as filehandle:
+    # read pickled processed quotesList data as binary data stream
+        quotesList = json.load(filehandle)
 
     if textType.lower() == 'sentence':
-        randomSentences = [quotes[random.randint(0,(len(quotes)-1))] for n in range(number)]
-        ipsum = [' '.join(sentence for sentence in randomSentences)]
+        ipsumSentences = []
+        while len(ipsumSentences) < number:
+            randomQuote = quotesList[random.randint(0,(len(quotesList)-1))]
+            remainingSentenceSlots = number - len(ipsumSentences)
+            if remainingSentenceSlots >= randomQuote.get('length'):
+                if randomQuote.get('sentence'):
+                    ipsumSentences.extend(randomQuote.get('sentence'))
+                else:
+                    continue
+            else:
+                if randomQuote.get('sentence'):
+                    ipsumSentences.extend(randomQuote.get('sentence')[0:remainingSentenceSlots-1])
+                else:
+                    continue
+
+        ipsum = [' '.join(ipsumSentences)]
+    
     
     elif textType.lower() == 'paragraph':
         ipsum = []
         for n in range(number):
-            para = [quotes[random.randint(0,(len(quotes)-1))] for i in range(6)]
-            para = ' '.join(sentence for sentence in para)
+            ipsumSentences = []
+            while len(ipsumSentences) < paraSize:
+                randomQuote = quotesList[random.randint(0,(len(quotesList)-1))]
+                remainingSentenceSlots = paraSize - len(ipsumSentences)
+                if remainingSentenceSlots >= randomQuote.get('length'):
+                    if randomQuote.get('sentence'):
+                        ipsumSentences.extend(randomQuote.get('sentence'))
+                    else:
+                        continue
+                else:
+                    if randomQuote.get('sentence'):
+                        ipsumSentences.extend(randomQuote.get('sentence')[0:remainingSentenceSlots-1])
+                    else:
+                        continue
+            
+            para = ' '.join(ipsumSentences)
             ipsum.append(para)
+            
     else:
         return {
             "statusCode": 400,
-            "body": json.dumps(["Error: text-type must be either sentence or paragraph"])
+            "body": json.dumps(["Error: text-type value must be either sentence or paragraph"])
         }
 
     return {
             "statusCode": 200,
-            "content-type": "application/json",
+            "headers": { "content-type": "application/json"},
             "body": json.dumps(ipsum)
         }
 
