@@ -8,12 +8,12 @@ Method: Get
 
 Query Parameters:
 
-  **'type'**
-      value: "sentence" or "paragraph" 
-      default value: "sentence"
-      required: false
+  **'type'**  
+        value: "sentence" or "paragraph"  
+        default value: "sentence"  
+        required: false  
   
-  **'number'**
-      value: digit > 0     e.g. 4
-      default value: "6"
-      required: false
+  **'number'**  
+        value: digit > 0     e.g. 4  
+        default value: "6"  
+        required: false  
