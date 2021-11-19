@@ -21,8 +21,7 @@ def processQuotes(quotes):
     return quotesList
 
 
-# store the quotesList as a pickled file
-def pickleQuotesList(quotesList):
+def storeQuotesList(quotesList):
     with open('processed_quotes.txt', 'w') as filehandle:
         # store the data as json
         json.dump(quotesList, filehandle)
@@ -31,4 +30,4 @@ def pickleQuotesList(quotesList):
 
 if __name__ == "__main__":
     quotesList = processQuotes(rawQuotes)
-    pickleQuotesList(quotesList)
+    storeQuotesList(quotesList)
