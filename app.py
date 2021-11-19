@@ -1,5 +1,3 @@
-# app.py
-# import re
 
 import json
 import random
@@ -24,8 +22,6 @@ def jurgenIpsum(event, context):
             "body": json.dumps(["Error: Invalid number value"])
         }
     
-    # make list of sentence from quotes string
-    # sentenceList = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?|\!)\s', quotesString)
 
     if textType.lower() == 'sentence':
         randomSentences = [quotes[random.randint(0,(len(quotes)-1))] for n in range(number)]
@@ -40,7 +36,7 @@ def jurgenIpsum(event, context):
     else:
         return {
             "statusCode": 400,
-            "body": json.dumps(["Error: text-type must be either sentence or pargraph"])
+            "body": json.dumps(["Error: text-type must be either sentence or paragraph"])
         }
 
     return {
