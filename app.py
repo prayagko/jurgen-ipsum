@@ -19,13 +19,13 @@ def jurgenIpsum(event, context):
     except ValueError:
         return {
             "statusCode": 400,
-            "body": json.dumps(["Error: Invalid number value. Ensure that number value is a digit."])
+            "body": json.dumps({"Error": "Invalid number value. Ensure that number value is a digit."})
         }
         
     if number < 0:
         return {
             "statusCode": 400,
-            "body": json.dumps(["Error: Number value should be digit greater than 0."])
+            "body": json.dumps({"Error": "Number value should be digit greater than 0."})
         }   
         
     if textType == 'paragraph':
@@ -34,14 +34,14 @@ def jurgenIpsum(event, context):
         except ValueError:
             return {
                 "statusCode": 400,
-                "body": json.dumps(["Error: Invalid para-size value. Ensure that para-size value is a digit."])
+                "body": json.dumps({"Error": "Invalid para-size value. Ensure that para-size value is a digit."})
             }
         
     
     if textType=='paragraph' and paraSize < 0:
         return {
             "statusCode": 400,
-            "body": json.dumps(["Error: para-size value should be digit greater than 0."])
+            "body": json.dumps({"Error": "para-size value should be digit greater than 0."})
         }    
     
     with open('processed_quotes.txt', 'r') as filehandle:
@@ -90,12 +90,12 @@ def jurgenIpsum(event, context):
     else:
         return {
             "statusCode": 400,
-            "body": json.dumps(["Error: text-type value must be either sentence or paragraph"])
+            "body": json.dumps({"Error": "text-type value must be either sentence or paragraph"})
         }
 
     return {
             "statusCode": 200,
             "headers": { "content-type": "application/json"},
-            "body": json.dumps(ipsum)
+            "body": json.dumps({"data": ipsum})
         }
 
