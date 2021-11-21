@@ -23,4 +23,4 @@ Query Parameters:
         value: digit > 0       e.g. "4"  
         default value: "7"  
         required: false  
-        description: Number of sentences you want per paragraph. This parameter ignored unless type is "paragraph".
+        description: Number of sentences you want per paragraph. This parameter is ignored unless type is "paragraph".
