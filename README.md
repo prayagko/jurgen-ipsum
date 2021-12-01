@@ -3,7 +3,7 @@ Lorem Ipsum made from Jurgen Klopp quotes.
 # **API**
 
 
-**Endpoint:** https://t3ygzbl2q0.execute-api.ap-southeast-2.amazonaws.com/default/jurgen-ipsum
+**Endpoint:** https://77ccdpg7c8.execute-api.ap-southeast-2.amazonaws.com/
 
 **Method:** Get
 
