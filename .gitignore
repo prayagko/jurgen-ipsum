@@ -30,6 +30,10 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+### serverless
+.serverless
+serverless.yml
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/

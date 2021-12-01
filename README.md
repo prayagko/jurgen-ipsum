@@ -1,12 +1,13 @@
-Lorem Ipsum made from Jurgen Klopp quotes. Hosted on AWS Lambda.
+Lorem Ipsum made from Jurgen Klopp quotes.
 
-**API**
+# **API**
 
-Endpoint: https://t3ygzbl2q0.execute-api.ap-southeast-2.amazonaws.com/default/jurgen-ipsum
 
-Method: Get
+**Endpoint:** https://t3ygzbl2q0.execute-api.ap-southeast-2.amazonaws.com/default/jurgen-ipsum
 
-Query Parameters:
+**Method:** Get
+
+## **Query Parameters:**
 
   **'type'**  
         value: "sentence" or "paragraph"  
