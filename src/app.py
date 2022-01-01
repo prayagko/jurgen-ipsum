@@ -1,9 +1,9 @@
 import json
 import random
+from src.lambda_decorators import cors_headers
 
-
+@cors_headers
 def jurgenIpsum(event, context):
-    
     try:
         if event.get('queryStringParameters'):
             number = event['queryStringParameters'].get('number', 6)
@@ -20,20 +20,12 @@ def jurgenIpsum(event, context):
         except ValueError:
             return {
                 "statusCode": 400,
-                "headers": { "content-type": "application/json",
-                            "Access-Control-Allow-Headers": "*",
-                            "Access-Control-Allow-Origin": "*",
-                        },
                 "body": json.dumps({"Error": "Invalid number value. Ensure that number value is a digit."})
             }
             
         if number < 0:
             return {
                 "statusCode": 400,
-                "headers": { "content-type": "application/json",
-                            "Access-Control-Allow-Headers": "*",
-                            "Access-Control-Allow-Origin": "*",
-                        },
                 "body": json.dumps({"Error": "Number value should be digit greater than 0."})
             }   
             
@@ -43,10 +35,6 @@ def jurgenIpsum(event, context):
             except ValueError:
                 return {
                     "statusCode": 400,
-                    "headers": { "content-type": "application/json",
-                            "Access-Control-Allow-Headers": "*",
-                            "Access-Control-Allow-Origin": "*",
-                        },
                     "body": json.dumps({"Error": "Invalid para-size value. Ensure that para-size value is a digit."})
                 }
             
@@ -54,10 +42,6 @@ def jurgenIpsum(event, context):
         if textType=='paragraph' and paraSize < 0:
             return {
                 "statusCode": 400,
-                "headers": { "content-type": "application/json",
-                            "Access-Control-Allow-Headers": "*",
-                            "Access-Control-Allow-Origin": "*",
-                        },
                 "body": json.dumps({"Error": "para-size value should be digit greater than 0."})
             }    
         
@@ -107,27 +91,15 @@ def jurgenIpsum(event, context):
         else:
             return {
                 "statusCode": 400,
-                "headers": { "content-type": "application/json",
-                            "Access-Control-Allow-Headers": "*",
-                            "Access-Control-Allow-Origin": "*",
-                        },
                 "body": json.dumps({"Error": "text-type value must be either sentence or paragraph"})
             }
     
         return {
                 "statusCode": 200,
-                "headers": { "content-type": "application/json",
-                            "Access-Control-Allow-Headers": "*",
-                            "Access-Control-Allow-Origin": "*",
-                        },
                 "body": json.dumps({"data": ipsum})
             }
     except:
         return {
             "statusCode": 500,
-            "headers": { "content-type": "application/json",
-                        "Access-Control-Allow-Headers": "*",
-                        "Access-Control-Allow-Origin": "*",
-                    },
             "body": json.dumps({"Error": "Server Error"})
         }
