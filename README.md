@@ -1,27 +1,36 @@
-Lorem Ipsum made from Jurgen Klopp quotes.
+# Jurgen Ipsum
 
-# **API**
+Get placeholder text made up of Jurgen Klopp's best quotes.
+
+## API
+
+Method- GET
+
+```
+https://c0gz8sdq52.execute-api.ap-southeast-2.amazonaws.com/dev/
+```
+
+## Query Parameters
+
+| Param | type |
+|:---|:---|
+| value | "sentence" or "paragraph"   |
+| default | "sentence"  |
+| required  | false  |
+
+| Param | number |
+|:---|:---|
+| value | digit > 0            e.g. "4"     |
+| default | 6  |
+| required  | false  |
+| description  | Number of sentences or paragraphs. |
+
+| Param | para-size |
+|:---|:---|
+| value | digit > 0            e.g. "4"     |
+| default | 7  |
+| required  | false  |
+| description  | Number of sentences per paragraph. Ignored unless type is "paragraph". |. 
 
 
-**Endpoint:** https://br2i5iof6e.execute-api.us-east-1.amazonaws.com/
-
-**Method:** Get
-
-## **Query Parameters:**
-
-  **'type'**  
-        value: "sentence" or "paragraph"  
-        default value: "sentence"  
-        required: false  
   
-  **'number'**  
-        value: digit > 0       e.g. "4"  
-        default value: "6"  
-        required: false  
-        description: Number of sentences or paragraphs you want.  
-
-  **'para-size'**  
-        value: digit > 0       e.g. "4"  
-        default value: "7"  
-        required: false  
-        description: Number of sentences you want per paragraph. This parameter is ignored unless type is "paragraph".
