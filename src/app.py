@@ -13,8 +13,6 @@ def jurgenIpsum(event, context):
             number = 6
             textType = 'sentence'
             paraSize = 7
-        
-    
         try:
             number = int(number)
         except ValueError:
@@ -22,7 +20,7 @@ def jurgenIpsum(event, context):
                 "statusCode": 400,
                 "body": json.dumps({"Error": "Invalid number value. Ensure that number value is a digit."})
             }
-            
+
         if number < 0:
             return {
                 "statusCode": 400,
@@ -36,15 +34,12 @@ def jurgenIpsum(event, context):
                 return {
                     "statusCode": 400,
                     "body": json.dumps({"Error": "Invalid para-size value. Ensure that para-size value is a digit."})
-                }
-            
-        
+                }        
         if textType=='paragraph' and paraSize < 0:
             return {
                 "statusCode": 400,
                 "body": json.dumps({"Error": "para-size value should be digit greater than 0."})
-            }    
-        
+            }         
         with open('src/processed_quotes.txt', 'r') as filehandle:
             quotesList = json.load(filehandle)
     
@@ -52,53 +47,44 @@ def jurgenIpsum(event, context):
             ipsumSentences = []
             while len(ipsumSentences) < number:
                 randomQuote = quotesList[random.randint(0,(len(quotesList)-1))]
-                remainingSentenceSlots = number - len(ipsumSentences)
-                if remainingSentenceSlots >= randomQuote.get('length'):
-                    if randomQuote.get('sentence'):
-                        ipsumSentences.extend(randomQuote.get('sentence'))
+                for i in range(int(randomQuote.get('length'))):
+                    remainingSentenceSlots = number - len(ipsumSentences)
+                    if remainingSentenceSlots >0:
+                        if randomQuote.get('sentence'):
+                            ipsumSentences.append(randomQuote.get('sentence')[i])
+                        else:
+                             continue
                     else:
-                        continue
-                else:
-                    if randomQuote.get('sentence'):
-                        ipsumSentences.extend(randomQuote.get('sentence')[0:remainingSentenceSlots-1])
-                    else:
-                        continue
-    
+                        break
             ipsum = [' '.join(ipsumSentences)]
-        
-        
         elif textType.lower() == 'paragraph':
             ipsum = []
-            for n in range(number):
+            for _ in range(number):
                 ipsumSentences = []
                 while len(ipsumSentences) < paraSize:
                     randomQuote = quotesList[random.randint(0,(len(quotesList)-1))]
-                    remainingSentenceSlots = paraSize - len(ipsumSentences)
-                    if remainingSentenceSlots >= randomQuote.get('length'):
-                        if randomQuote.get('sentence'):
-                            ipsumSentences.extend(randomQuote.get('sentence'))
+                    for i in range(int(randomQuote.get('length'))):
+                        remainingSentenceSlots = paraSize - len(ipsumSentences)
+                        if remainingSentenceSlots >0:
+                            if randomQuote.get('sentence'):
+                                ipsumSentences.append(randomQuote.get('sentence')[i])
+                            else:
+                                continue
                         else:
-                            continue
-                    else:
-                        if randomQuote.get('sentence'):
-                            ipsumSentences.extend(randomQuote.get('sentence')[0:remainingSentenceSlots-1])
-                        else:
-                            continue
-                
+                            break
                 para = ' '.join(ipsumSentences)
-                ipsum.append(para)
-                
+                ipsum.append(para)        
         else:
             return {
                 "statusCode": 400,
                 "body": json.dumps({"Error": "text-type value must be either sentence or paragraph"})
             }
-    
         return {
                 "statusCode": 200,
                 "body": json.dumps({"data": ipsum})
             }
-    except:
+    except Exception as e:
+        print('Exception Occured: ', e)
         return {
             "statusCode": 500,
             "body": json.dumps({"Error": "Server Error"})

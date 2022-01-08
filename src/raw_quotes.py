@@ -51,7 +51,7 @@ rawQuotes = ["I never succeeded in bringing to the field what was going on in my
               "I ask that you believe in this team and believe that together we can achieve great things.",
               "The team will go out and battle for you and look to represent you, the club and the city in how we approach our work: this is my commitment.",
               "I have a second pair of glasses, but I can't find them. It's hard to find glasses without glasses!",
-              "From my point of view, if somebody wants to celebrate the memories of the Istanbul game, they're very welcome. That's absolutely OK. hat's how I would say hello to a good old friend. Nobody has to ignore this wonderful moment. I'm fine with this. Do what you feel.",
+              "From my point of view, if somebody wants to celebrate the memories of the Istanbul game, they're very welcome. That's absolutely OK. That's how I would say hello to a good old friend. Nobody has to ignore this wonderful moment. I'm fine with this. Do what you feel.",
               "We are still Rocky Balboa, not Ivan Drago. It's not about being the underdog, not one little bit. I don't want to be the underdog. I want to win, and Rocky won.",
               "Let's talk about six, baby, let's talk about you and me, let's talk about all the good things and all the bad things there may be.",
               "Everybody in the stadium has to be in absolutely top shape. The guys who sell the hot dogs has to be in top shape.",

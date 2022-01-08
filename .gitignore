@@ -34,6 +34,14 @@ Temporary Items
 .serverless
 serverless.yml
 
+# test file
+test.json
+
+# npm files
+package-lock.json
+package.json
+
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/

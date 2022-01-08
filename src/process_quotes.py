@@ -12,7 +12,8 @@ def processQuotes(quotes):
     quotesList = []
     for i, q in enumerate(quotes):
         # using regex to get a list of sentence(s) from each quote
-        sentenceList = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?|\!)\s', q)
+        sentenceList = re.split(r'''(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?:(?<=[.!?])|(?<=[.!?]['"”’]))\s''', q)
+                                #'/[^.!?\\s][^.!?\\n]*(?:[.!?](?![\'"]?\\s|$)[^.!?]*)*[.!?]?[\'"]?(?=\\s|$)/g'
         quotesDict = {}
         quotesDict['id'] = i
         quotesDict['sentence'] = sentenceList
@@ -22,7 +23,7 @@ def processQuotes(quotes):
 
 
 def storeQuotesList(quotesList):
-    with open('processed_quotes.txt', 'w') as filehandle:
+    with open('src/processed_quotes.txt', 'w') as filehandle:
         # store the data as json
         json.dump(quotesList, filehandle)
     return
